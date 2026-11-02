@@ -6,58 +6,75 @@
   border: 2px solid transparent;
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
-  font-weight: 600;
-  font-style: italic;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 1.33;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background-color var(--transition),
     color var(--transition),
     border-color var(--transition),
+    box-shadow var(--transition),
     transform var(--transition);
 }
 
 .button:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
 }
 
 .button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
-.button:disabled {
+.button:disabled:not(.loading) {
   cursor: not-allowed;
-  opacity: 0.6;
+  background: var(--color-disabled);
+  border-color: transparent;
+  color: var(--color-disabled-text);
+  box-shadow: none;
+}
+
+.loading {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.label {
+  line-height: inherit;
 }
 
 .sm {
-  padding: var(--space-2) var(--space-5);
+  padding: var(--space-2) var(--space-4);
   font-size: var(--text-sm);
 }
 
 .md {
-  padding: var(--space-3) var(--space-8);
-  font-size: var(--text-md);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-lg);
 }
 
 .lg {
-  padding: var(--space-4) var(--space-10);
-  font-size: var(--text-lg);
+  padding: var(--space-3) var(--space-12);
+  font-size: var(--text-2xl);
 }
 
 .primary {
   background: var(--color-primary);
   color: var(--color-white);
+  font-style: italic;
+  font-weight: 600;
 }
 
 .primary:hover:not(:disabled) {
-  background: var(--color-primary-dark);
+  background: var(--color-primary-hover);
+  border-color: var(--color-ring);
+  box-shadow: var(--shadow-hover);
 }
 
 .secondary {
   background: var(--color-periwinkle);
-  color: var(--color-white);
+  color: var(--color-ink);
 }
 
 .secondary:hover:not(:disabled) {
@@ -86,14 +103,6 @@
 
 .fullWidth {
   width: 100%;
-}
-
-.loading {
-  cursor: progress;
-}
-
-.label {
-  line-height: 1;
 }
 
 .spinner {
