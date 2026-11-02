@@ -1,137 +1,186 @@
-import { Suspense } from "react";
-import Link from "next/link";
-import { getProperties } from "@/services/properties";
+import { ButtonLink } from "../components/ui/Button";
+import { Footer } from "../components/ui/Footer";
+import { AccountLink, Navbar } from "../components/ui/Navbar";
+import {
+  features,
+  footer,
+  hero,
+  heroCards,
+  navLinks,
+  problem,
+  steps,
+  testimonials,
+  vibe,
+} from "../content/landing";
+import type { Tone } from "../content/landing";
+import styles from "./page.module.css";
 
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  }).format(price);
-}
+const toneClass: Record<Tone, string> = {
+  green: styles.toneGreen,
+  blue: styles.toneBlue,
+  orange: styles.toneOrange,
+  lilac: styles.toneLilac,
+  periwinkle: styles.tonePeriwinkle,
+  tan: styles.toneTan,
+  crimson: styles.toneCrimson,
+  blueStrong: styles.toneBlueStrong,
+  peach: styles.tonePeach,
+  pink: styles.tonePink,
+  purple: styles.tonePurple,
+  sky: styles.toneSky,
+};
 
-async function PropertiesList() {
-  const properties = await getProperties();
-
-  if (properties.length === 0) {
-    return (
-      <p className="rounded-xl bg-white p-6 text-gray-600">
-        No hay propiedades registradas por el momento.
-      </p>
-    );
-  }
-
+export default function LandingPage() {
   return (
-    <section>
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="text-2xl font-semibold">Propiedades</h2>
-          <p className="mt-1 text-sm text-gray-600">
-            Encuentra una vivienda que se adapte a ti.
-          </p>
-        </div>
+    <div className={styles.page}>
+      <div className={styles.panel}>
+        <Navbar
+          links={navLinks}
+          account={<AccountLink href="/login" label="Iniciar sesión" />}
+        />
 
-        <span className="rounded-full bg-white px-4 py-2 text-sm shadow-sm">
-          {properties.length} propiedades
-        </span>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {properties.map((property) => (
-          <Link
-            key={property.id}
-            href={`/properties/${property.id}`}
-            className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-          >
-            <div className="flex h-36 items-center justify-center bg-red-50">
-              <span className="text-5xl" aria-hidden="true">
-                🏠
-              </span>
+        <section className={styles.hero} aria-labelledby="hero-title">
+          <div>
+            <h1 id="hero-title" className={styles.heroTitle}>
+              {hero.title} <span className={styles.accent}>{hero.accent}</span>
+            </h1>
+            <p className={styles.heroText}>{hero.text}</p>
+            <div className={styles.heroActions}>
+              <ButtonLink href="/properties" variant="accent" size="lg">
+                {hero.primaryCta}
+              </ButtonLink>
+              <ButtonLink href="#como-funciona" variant="outline" size="lg">
+                {hero.secondaryCta}
+              </ButtonLink>
             </div>
-
-            <div className="p-5">
-              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs capitalize">
-                  {property.propertyType?.name ?? "Vivienda"}
-                </span>
-
-                <span
-                  className={
-                    property.available
-                      ? "text-xs font-medium text-green-700"
-                      : "text-xs font-medium text-gray-500"
-                  }
-                >
-                  {property.available ? "Disponible" : "No disponible"}
-                </span>
-              </div>
-
-              <h3 className="text-lg font-semibold group-hover:text-red-600">
-                {property.name}
-              </h3>
-
-              <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-600">
-                {property.description}
-              </p>
-
-              <p className="mt-3 text-sm text-gray-500">
-                📍 {property.address}
-              </p>
-
-              <p className="mt-4 text-xl font-bold text-red-600">
-                {formatPrice(property.price)}
-                <span className="ml-1 text-xs font-normal text-gray-500">
-                  / mes
-                </span>
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {property.amenities?.slice(0, 3).map((amenity) => (
-                  <span
-                    key={amenity.id}
-                    className="rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600"
-                  >
-                    {amenity.name}
-                  </span>
-                ))}
-              </div>
-
-              <p className="mt-5 font-semibold text-red-600">
-                Ver detalles <span aria-hidden="true">→</span>
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export default function HomePage() {
-  return (
-    <main className="min-h-screen bg-gray-50 px-6 py-10 text-gray-900 md:px-12">
-      <header className="mb-10">
-        <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
-          Encuentra tu próximo hogar
-        </p>
-
-        <h1 className="mt-2 text-4xl font-bold">UHome</h1>
-
-        <p className="mt-3 max-w-xl leading-7 text-gray-600">
-          Explora opciones de vivienda, compara sus características y
-          descubre los detalles antes de elegir tu próximo hogar.
-        </p>
-      </header>
-
-      <Suspense
-        fallback={
-          <div className="rounded-xl bg-white p-6 text-gray-600">
-            Cargando propiedades...
           </div>
-        }
-      >
-        <PropertiesList />
-      </Suspense>
-    </main>
+
+          <div className={styles.heroCards} aria-hidden="true">
+            {heroCards.map((card) => (
+              <div
+                key={card.label}
+                className={`${styles.heroCard} ${toneClass[card.tone]}`}
+              >
+                <p className={styles.heroCardLabel}>{card.label}</p>
+                <p className={styles.heroCardValue}>
+                  {card.value}{" "}
+                  <span className={styles.heroCardUnit}>{card.unit}</span>
+                </p>
+                <p className={styles.heroCardNote}>{card.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="problem-title">
+          <h2 id="problem-title" className={styles.sectionTitle}>
+            {problem.title}
+          </h2>
+          <ul className={styles.grid3}>
+            {problem.items.map((item) => (
+              <li
+                key={item.text}
+                className={`${styles.problemCard} ${toneClass[item.tone]}`}
+              >
+                {item.text}
+              </li>
+            ))}
+          </ul>
+          <p className={styles.problemNote}>
+            {problem.note} <strong>{problem.strong}</strong>
+          </p>
+        </section>
+
+        <section
+          id="funciones"
+          className={styles.section}
+          aria-labelledby="features-title"
+        >
+          <h2 id="features-title" className={styles.sectionTitle}>
+            {features.title}
+          </h2>
+          <ul className={styles.grid4}>
+            {features.items.map((item) => (
+              <li key={item.title} className={styles.featureCard}>
+                <h3 className={`${styles.featureHead} ${toneClass[item.tone]}`}>
+                  {item.title}
+                </h3>
+                <p className={styles.featureBody}>{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          id="como-funciona"
+          className={styles.section}
+          aria-labelledby="steps-title"
+        >
+          <h2 id="steps-title" className={styles.sectionTitle}>
+            {steps.title}
+          </h2>
+          <ol className={styles.steps}>
+            {steps.items.map((item, index) => (
+              <li key={item.text} className={styles.step}>
+                <span
+                  className={`${styles.stepNumber} ${toneClass[item.tone]}`}
+                  aria-hidden="true"
+                >
+                  {index + 1}
+                </span>
+                <span className={styles.stepLabel}>{item.text}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className={styles.vibe} aria-labelledby="vibe-title">
+          <div>
+            <h2 id="vibe-title" className={styles.sectionTitle}>
+              {vibe.title}
+            </h2>
+            {vibe.paragraphs.map((paragraph) => (
+              <p key={paragraph} className={styles.vibeText}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <ul className={styles.tags}>
+            {vibe.tags.map((tag) => (
+              <li key={tag} className={styles.tag}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          id="opiniones"
+          className={styles.section}
+          aria-labelledby="quotes-title"
+        >
+          <h2 id="quotes-title" className={styles.sectionTitle}>
+            {testimonials.title}
+          </h2>
+          <ul className={styles.quotes}>
+            {testimonials.items.map((item) => (
+              <li
+                key={item.text}
+                className={`${styles.quote} ${toneClass[item.tone]}`}
+              >
+                “{item.text}”
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      <Footer
+        tagline={footer.tagline}
+        columns={footer.columns}
+        contact={footer.contact}
+        copyright={footer.copyright}
+      />
+    </div>
   );
 }

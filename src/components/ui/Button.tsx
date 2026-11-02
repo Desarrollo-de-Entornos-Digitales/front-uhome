@@ -1,15 +1,59 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "primary" | "secondary" | "accent" | "outline";
 export type ButtonSize = "sm" | "md" | "lg";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface SharedProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  loading?: boolean;
   fullWidth?: boolean;
   children: ReactNode;
+}
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  SharedProps & {
+    loading?: boolean;
+  };
+
+export type ButtonLinkProps = Omit<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  "href"
+> &
+  SharedProps & {
+    href: string;
+  };
+
+interface ClassOptions {
+  variant: ButtonVariant;
+  size: ButtonSize;
+  fullWidth: boolean;
+  loading: boolean;
+  extra?: string;
+}
+
+function buildClassName({
+  variant,
+  size,
+  fullWidth,
+  loading,
+  extra,
+}: ClassOptions) {
+  return [
+    styles.button,
+    styles[variant],
+    styles[size],
+    fullWidth ? styles.fullWidth : "",
+    loading ? styles.loading : "",
+    extra ?? "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
 export function Button({
@@ -23,21 +67,16 @@ export function Button({
   type = "button",
   ...rest
 }: ButtonProps) {
-  const classes = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    fullWidth ? styles.fullWidth : "",
-    loading ? styles.loading : "",
-    className ?? "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return (
     <button
       type={type}
-      className={classes}
+      className={buildClassName({
+        variant,
+        size,
+        fullWidth,
+        loading,
+        extra: className,
+      })}
       disabled={disabled || loading}
       aria-busy={loading}
       {...rest}
@@ -45,5 +84,31 @@ export function Button({
       {loading && <span className={styles.spinner} aria-hidden="true" />}
       <span className={styles.label}>{children}</span>
     </button>
+  );
+}
+
+export function ButtonLink({
+  variant = "primary",
+  size = "md",
+  fullWidth = false,
+  className,
+  children,
+  href,
+  ...rest
+}: ButtonLinkProps) {
+  return (
+    <Link
+      href={href}
+      className={buildClassName({
+        variant,
+        size,
+        fullWidth,
+        loading: false,
+        extra: className,
+      })}
+      {...rest}
+    >
+      <span className={styles.label}>{children}</span>
+    </Link>
   );
 }

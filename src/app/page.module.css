@@ -1,0 +1,349 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.panel {
+  width: calc(100% - var(--space-8));
+  max-width: 1247px;
+  margin: var(--space-8) auto var(--space-12);
+  background: var(--color-cream);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  padding: var(--space-8) var(--space-8) var(--space-12);
+}
+
+.heroTitle {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(2.5rem, 6vw, var(--text-6xl));
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.accent {
+  font-family: var(--font-accent);
+  font-size: 1.03em;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.heroText {
+  max-width: 34ch;
+  margin: 0 0 var(--space-6);
+  font-size: var(--text-xl);
+  line-height: 1.4;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.heroCards {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-8);
+}
+
+.heroCard {
+  padding: var(--space-6);
+  border-radius: var(--radius-block);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.heroCard:nth-child(1) {
+  transform: rotate(-3deg);
+}
+
+.heroCard:nth-child(2) {
+  margin: calc(var(--space-4) * -1) 0 0 var(--space-6);
+  transform: rotate(2deg);
+}
+
+.heroCard:nth-child(3) {
+  margin: calc(var(--space-4) * -1) 0 0 var(--space-3);
+  transform: rotate(-2deg);
+}
+
+.heroCardLabel {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+}
+
+.heroCardValue {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-5xl);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.heroCardUnit {
+  font-size: var(--text-2xl);
+  font-weight: 400;
+}
+
+.heroCardNote {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-md);
+}
+
+.section {
+  padding: var(--space-8) var(--space-8) var(--space-12);
+  scroll-margin-top: var(--space-8);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-8);
+  font-size: clamp(2rem, 4vw, var(--text-5xl));
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1.23;
+}
+
+.grid3,
+.grid4 {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.problemCard {
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-block);
+  font-size: var(--text-3xl);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.problemNote {
+  margin: var(--space-8) 0 0;
+  text-align: center;
+  font-size: var(--text-2xl);
+  letter-spacing: -0.05em;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-block);
+  background: var(--color-white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.featureHead {
+  margin: 0;
+  padding: var(--space-6);
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+}
+
+.featureBody {
+  margin: 0;
+  padding: var(--space-6);
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: var(--space-16);
+  height: var(--space-16);
+  border-radius: 50%;
+  font-size: var(--text-4xl);
+  font-weight: 600;
+}
+
+.stepLabel {
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  font-size: var(--text-xl);
+  letter-spacing: -0.05em;
+}
+
+.vibe {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  padding: var(--space-8) var(--space-8) var(--space-12);
+}
+
+.vibeText {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-xl);
+  line-height: 1.5;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-wine);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-wine);
+  font-size: var(--text-sm);
+}
+
+.quotes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quote {
+  max-width: 360px;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-card);
+  font-size: var(--text-md);
+  line-height: 1.4;
+}
+
+.toneGreen {
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+.toneBlue {
+  background: var(--color-blue);
+  color: var(--color-ink);
+}
+
+.toneOrange {
+  background: var(--color-orange);
+  color: var(--color-ink);
+}
+
+.toneLilac {
+  background: var(--color-lilac);
+  color: var(--color-ink);
+}
+
+.tonePeriwinkle {
+  background: var(--color-periwinkle);
+  color: var(--color-ink);
+}
+
+.toneTan {
+  background: var(--color-tan);
+  color: var(--color-ink);
+}
+
+.toneCrimson {
+  background: var(--color-crimson);
+  color: var(--color-white);
+}
+
+.toneBlueStrong {
+  background: var(--color-blue-strong);
+  color: var(--color-white);
+}
+
+.tonePeach {
+  background: var(--color-peach);
+  color: var(--color-ink);
+}
+
+.tonePink {
+  background: var(--color-pink);
+  color: var(--color-ink);
+}
+
+.tonePurple {
+  background: var(--color-purple);
+  color: var(--color-white);
+}
+
+.toneSky {
+  background: var(--color-sky);
+  color: var(--color-ink);
+}
+
+@media (max-width: 1000px) {
+  .grid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero,
+  .vibe {
+    grid-template-columns: 1fr;
+  }
+
+  .grid3,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero,
+  .section,
+  .vibe {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .grid4 {
+    grid-template-columns: 1fr;
+  }
+}

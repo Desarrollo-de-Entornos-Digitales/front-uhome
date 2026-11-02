@@ -1,15 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
-  --color-primary: #fe2f29;
-  --color-primary-dark: #d9211c;
-  --color-brand-red: #fd1913;
+  --color-primary: #ff2d25;
+  --color-primary-hover: #d51e17;
+  --color-ring: #8f1a14;
+  --color-error: #b42318;
   --color-wine: #a1325c;
   --color-wine-dark: #832749;
   --color-crimson: #8c0d0d;
   --color-crimson-soft: #e7cad5;
   --color-green: #2d7864;
-  --color-green-bright: #076f0b;
+  --color-location: #076f0b;
+  --color-info: #4c68c2;
   --color-blue: #82a0ff;
   --color-periwinkle: #99a0f9;
   --color-periwinkle-dark: #7d86f0;
@@ -22,14 +24,17 @@
   --color-purple: #8a38f5;
   --color-purple-deep: #4f00b5;
   --color-tan: #c1b287;
-  --color-ink: #111111;
+  --color-star: #ffcc00;
+  --color-ink: #15181f;
   --color-white: #ffffff;
   --color-cream: #f6f1ee;
   --color-page: #ece7e5;
   --color-footer: #262930;
-  --color-border-soft: #f7d1cd;
-  --color-border-red: #fa8480;
-  --color-focus: #3c6bc7;
+  --color-field-border: #ff9693;
+  --color-field-icon: #ff7673;
+  --color-placeholder: #a59898;
+  --color-disabled: #d7ceca;
+  --color-disabled-text: #746865;
 
   --chip-price: #dbd9f2;
   --chip-type: #f9cda7;
@@ -43,33 +48,35 @@
   --chip-orange: #fce4dd;
 
   --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-script: "Poppins", system-ui, sans-serif;
+  --font-accent: "Lobster Two", "Poppins", cursive;
 
   --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
+  --text-sm: 0.9375rem;
   --text-md: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
   --text-3xl: 2rem;
-  --text-4xl: 2.5rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
-  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
-  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
 
   --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-block: 16px;
+  --radius-card: 21px;
+  --radius-panel: 27px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-panel: 0 0 76px 15px rgba(0, 0, 0, 0.129);
+  --shadow-hover: 0 5px 12px 1px rgba(180, 35, 24, 0.2);
   --transition: 150ms ease;
 }
