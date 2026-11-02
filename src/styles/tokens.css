@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+:root {
+  --color-primary: #fe2f29;
+  --color-primary-dark: #d9211c;
+  --color-brand-red: #fd1913;
+  --color-wine: #a1325c;
+  --color-wine-dark: #832749;
+  --color-crimson: #8c0d0d;
+  --color-crimson-soft: #e7cad5;
+  --color-green: #2d7864;
+  --color-green-bright: #076f0b;
+  --color-blue: #82a0ff;
+  --color-periwinkle: #99a0f9;
+  --color-periwinkle-dark: #7d86f0;
+  --color-sky: #b8c8fd;
+  --color-blue-strong: #3c6bc7;
+  --color-orange: #f6693c;
+  --color-peach: #ffa78b;
+  --color-lilac: #f0befb;
+  --color-pink: #f2b4ff;
+  --color-purple: #8a38f5;
+  --color-purple-deep: #4f00b5;
+  --color-tan: #c1b287;
+  --color-ink: #111111;
+  --color-white: #ffffff;
+  --color-cream: #f6f1ee;
+  --color-page: #ece7e5;
+  --color-footer: #262930;
+  --color-border-soft: #f7d1cd;
+  --color-border-red: #fa8480;
+  --color-focus: #3c6bc7;
+
+  --chip-price: #dbd9f2;
+  --chip-type: #f9cda7;
+  --chip-distance: #c9f5e6;
+  --chip-lifestyle: #f3d6f3;
+  --chip-search: #ebe7e5;
+  --chip-university: #d9f9f2;
+  --chip-member: #f7dde7;
+  --chip-preferences: #d3ddfa;
+  --chip-name: #eae0f8;
+  --chip-orange: #fce4dd;
+
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-script: "Poppins", system-ui, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --transition: 150ms ease;
+}
