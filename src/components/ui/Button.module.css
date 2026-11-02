@@ -1,0 +1,118 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sm {
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--text-sm);
+}
+
+.md {
+  padding: var(--space-3) var(--space-8);
+  font-size: var(--text-md);
+}
+
+.lg {
+  padding: var(--space-4) var(--space-10);
+  font-size: var(--text-lg);
+}
+
+.primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.secondary {
+  background: var(--color-periwinkle);
+  color: var(--color-white);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--color-periwinkle-dark);
+}
+
+.accent {
+  background: var(--color-wine);
+  color: var(--color-white);
+}
+
+.accent:hover:not(:disabled) {
+  background: var(--color-wine-dark);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.loading {
+  cursor: progress;
+}
+
+.label {
+  line-height: 1;
+}
+
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2s;
+  }
+}
