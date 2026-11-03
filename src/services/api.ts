@@ -35,3 +35,31 @@ export async function apiRequest(
 
   return response;
 }
+
+export class ApiError extends Error {
+  readonly status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
+export async function getErrorMessage(response: Response): Promise<string> {
+  try {
+    const data = await response.json();
+
+    if (typeof data.message === "string") {
+      return data.message;
+    }
+
+    if (Array.isArray(data.message)) {
+      return data.message.join(", ");
+    }
+
+    return "Ocurrió un error al comunicarse con el servidor.";
+  } catch {
+    return "No se pudo procesar la respuesta del servidor.";
+  }
+}

@@ -8,17 +8,10 @@ import {
   getPropertyReviews,
   getPropertyVibe,
 } from "@/services/properties";
+import { formatPrice } from "@/utils/format";
 
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-function formatPrice(price: number) {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  }).format(price);
 }
 
 export default async function PropertyDetailPage({ params }: PageProps) {
@@ -57,7 +50,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-gray-50 px-5 py-8 text-gray-900 md:px-12">
       <div className="mx-auto max-w-5xl">
-        <Link href="/" className="font-semibold text-red-600 hover:underline">
+        <Link href="/properties" className="font-semibold text-red-600 hover:underline">
           ← Volver a propiedades
         </Link>
 
