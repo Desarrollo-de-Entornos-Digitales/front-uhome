@@ -1,0 +1,58 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 100%;
+  border-radius: var(--radius-pill);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sm {
+  padding: 0.2rem 0.6rem;
+  font-size: var(--text-xs);
+}
+
+.md {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8125rem;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.neutral {
+  background: var(--chip-search);
+}
+
+.price {
+  background: var(--chip-price);
+}
+
+.type {
+  background: var(--chip-type);
+  text-transform: capitalize;
+}
+
+.distance {
+  background: var(--chip-distance);
+}
+
+.lifestyle {
+  background: var(--chip-lifestyle);
+}
+
+.success {
+  background: rgba(45, 120, 100, 0.12);
+  color: var(--color-green);
+}
+
+.muted {
+  background: var(--color-disabled);
+  color: var(--color-disabled-text);
+}

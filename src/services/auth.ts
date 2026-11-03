@@ -1,4 +1,4 @@
-import { apiRequest } from "./api";
+import { apiRequest, getErrorMessage } from "./api";
 
 export interface AuthUser {
   id: number | string;
@@ -36,24 +36,6 @@ export interface RegisterResponse {
 
 export interface MessageResponse {
   message: string;
-}
-
-async function getErrorMessage(response: Response): Promise<string> {
-  try {
-    const data = await response.json();
-
-    if (typeof data.message === "string") {
-      return data.message;
-    }
-
-    if (Array.isArray(data.message)) {
-      return data.message.join(", ");
-    }
-
-    return "Ocurrió un error al comunicarse con el servidor.";
-  } catch {
-    return "No se pudo procesar la respuesta del servidor.";
-  }
 }
 
 export async function login(

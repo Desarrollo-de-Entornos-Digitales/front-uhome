@@ -1,0 +1,51 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink);
+  box-shadow: 0 2px 8px rgba(21, 24, 31, 0.15);
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    transform var(--transition),
+    background-color var(--transition);
+}
+
+.button:hover:not(:disabled) {
+  color: var(--color-primary);
+  transform: scale(1.06);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.active {
+  color: var(--color-primary);
+}
+
+.pending {
+  cursor: progress;
+  opacity: 0.6;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .pending {
+    animation: none;
+    transition: none;
+  }
+}
