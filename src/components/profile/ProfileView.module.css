@@ -1,0 +1,88 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.account {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.accountInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.accountName {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.preferences {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.preference {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.preferenceLabel {
+  color: var(--color-disabled-text);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.preferenceValue {
+  margin: 0;
+}
+
+.chip.university {
+  background: var(--chip-university);
+}
+
+.chip.preferences {
+  background: var(--chip-preferences);
+}
+
+.chip.name {
+  background: var(--chip-name);
+}
+
+.chip.member {
+  background: var(--chip-member);
+}
+
+@media (max-width: 640px) {
+  .account {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
