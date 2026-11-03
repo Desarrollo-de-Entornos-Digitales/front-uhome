@@ -102,13 +102,17 @@ function buildPreferenceItems(profile: StudentProfile): PreferenceItem[] {
       value: formatStayMonths(profile.desiredStayMonths),
       chip: "preferences",
     },
-    {
-      label: "Tipo de vivienda",
-      value: profile.preferredPropertyType
-        ? capitalize(profile.preferredPropertyType.name)
-        : "Sin preferencia",
-      tone: "type",
-    },
+    profile.preferredPropertyType
+      ? {
+          label: "Tipo de vivienda",
+          value: capitalize(profile.preferredPropertyType.name),
+          tone: "type",
+        }
+      : {
+          label: "Tipo de vivienda",
+          value: "Sin preferencia",
+          chip: "preferences",
+        },
     {
       label: "Habitaciones mínimas",
       value: formatCount(profile.minBedrooms, "habitación", "habitaciones"),
@@ -176,7 +180,7 @@ function PreferencesSummary({ profile }: { profile: StudentProfile }) {
         </h2>
       </CardHeader>
       <CardBody>
-        <dl className={styles.preferences}>
+        <dl className={styles.preferenceList}>
           {buildPreferenceItems(profile).map((item) => (
             <div key={item.label} className={styles.preference}>
               <dt className={styles.preferenceLabel}>{item.label}</dt>
