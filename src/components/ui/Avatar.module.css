@@ -1,0 +1,32 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--color-wine);
+  color: var(--color-white);
+
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--text-xs);
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+  font-size: var(--text-sm);
+}
+
+.lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--text-lg);
+}

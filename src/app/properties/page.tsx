@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import Link from "next/link";
+
 import { getProperties } from "@/services/properties";
+import { Navbar } from "@/components/ui/Navbar";
+import { UserMenu } from "@/components/ui/UserMenu";
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("es-CO", {
@@ -25,7 +28,10 @@ async function PropertiesList() {
     <section>
       <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-semibold">Propiedades</h2>
+          <h2 className="text-2xl font-semibold">
+            Propiedades
+          </h2>
+
           <p className="mt-1 text-sm text-gray-600">
             Encuentra una vivienda que se adapte a ti.
           </p>
@@ -44,7 +50,10 @@ async function PropertiesList() {
             className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           >
             <div className="flex h-36 items-center justify-center bg-red-50">
-              <span className="text-5xl" aria-hidden="true">
+              <span
+                className="text-5xl"
+                aria-hidden="true"
+              >
                 🏠
               </span>
             </div>
@@ -62,7 +71,9 @@ async function PropertiesList() {
                       : "text-xs font-medium text-gray-500"
                   }
                 >
-                  {property.available ? "Disponible" : "No disponible"}
+                  {property.available
+                    ? "Disponible"
+                    : "No disponible"}
                 </span>
               </div>
 
@@ -80,24 +91,30 @@ async function PropertiesList() {
 
               <p className="mt-4 text-xl font-bold text-red-600">
                 {formatPrice(property.price)}
+
                 <span className="ml-1 text-xs font-normal text-gray-500">
                   / mes
                 </span>
               </p>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                {property.amenities?.slice(0, 3).map((amenity) => (
-                  <span
-                    key={amenity.id}
-                    className="rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600"
-                  >
-                    {amenity.name}
-                  </span>
-                ))}
+                {property.amenities
+                  ?.slice(0, 3)
+                  .map((amenity) => (
+                    <span
+                      key={amenity.id}
+                      className="rounded-md bg-gray-50 px-2 py-1 text-xs text-gray-600"
+                    >
+                      {amenity.name}
+                    </span>
+                  ))}
               </div>
 
               <p className="mt-5 font-semibold text-red-600">
-                Ver detalles <span aria-hidden="true">→</span>
+                Ver detalles{" "}
+                <span aria-hidden="true">
+                  →
+                </span>
               </p>
             </div>
           </Link>
@@ -109,29 +126,47 @@ async function PropertiesList() {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gray-50 px-6 py-10 text-gray-900 md:px-12">
-      <header className="mb-10">
-        <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
-          Encuentra tu próximo hogar
-        </p>
+    <>
+      <Navbar
+        links={[
+          {
+            label: "Home",
+            href: "/",
+          },
+          {
+            label: "Search",
+            href: "/properties",
+          },
+        ]}
+        account={<UserMenu />}
+      />
 
-        <h1 className="mt-2 text-4xl font-bold">UHome</h1>
+      <main className="min-h-screen bg-gray-50 px-6 py-10 text-gray-900 md:px-12">
+        <header className="mb-10">
+          <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
+            Encuentra tu próximo hogar
+          </p>
 
-        <p className="mt-3 max-w-xl leading-7 text-gray-600">
-          Explora opciones de vivienda, compara sus características y
-          descubre los detalles antes de elegir tu próximo hogar.
-        </p>
-      </header>
+          <h1 className="mt-2 text-4xl font-bold">
+            UHome
+          </h1>
 
-      <Suspense
-        fallback={
-          <div className="rounded-xl bg-white p-6 text-gray-600">
-            Cargando propiedades...
-          </div>
-        }
-      >
-        <PropertiesList />
-      </Suspense>
-    </main>
+          <p className="mt-3 max-w-xl leading-7 text-gray-600">
+            Explora opciones de vivienda, compara sus características y
+            descubre los detalles antes de elegir tu próximo hogar.
+          </p>
+        </header>
+
+        <Suspense
+          fallback={
+            <div className="rounded-xl bg-white p-6 text-gray-600">
+              Cargando propiedades...
+            </div>
+          }
+        >
+          <PropertiesList />
+        </Suspense>
+      </main>
+    </>
   );
 }
