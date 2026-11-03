@@ -14,6 +14,7 @@ export default function ProfilePage() {
       title="Mi"
       accent="perfil."
       description="Revisa y ajusta tus preferencias para que UHome te muestre las viviendas que mejor encajan contigo."
+      activeHref="/profile"
     >
       <ProfileView />
     </AppShell>

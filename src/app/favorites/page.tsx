@@ -14,6 +14,7 @@ export default function FavoritesPage() {
       title="Mis"
       accent="favoritos."
       description="Las propiedades que guardaste quedan asociadas a tu cuenta para que las compares cuando quieras."
+      activeHref="/favorites"
     >
       <FavoritesView />
     </AppShell>

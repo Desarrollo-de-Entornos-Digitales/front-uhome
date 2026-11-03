@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+
+import { cx } from "@/utils/classNames";
+
 import styles from "./Navbar.module.css";
 
 export interface NavbarLink {
@@ -12,9 +15,15 @@ export interface NavbarProps {
   links?: NavbarLink[];
   account?: ReactNode;
   logoHref?: string;
+  activeHref?: string;
 }
 
-export function Navbar({ links = [], account, logoHref = "/" }: NavbarProps) {
+export function Navbar({
+  links = [],
+  account,
+  logoHref = "/",
+  activeHref,
+}: NavbarProps) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -34,11 +43,20 @@ export function Navbar({ links = [], account, logoHref = "/" }: NavbarProps) {
         </Link>
 
         <nav className={styles.nav} aria-label="Principal">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.link}>
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = link.href === activeHref;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cx(styles.link, isActive && styles.active)}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {account ? <div className={styles.account}>{account}</div> : null}

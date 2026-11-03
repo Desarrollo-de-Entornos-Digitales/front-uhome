@@ -46,6 +46,12 @@
   border-bottom-color: var(--color-wine);
 }
 
+.active {
+  border-bottom-color: var(--color-wine);
+  color: var(--color-wine);
+  font-weight: 600;
+}
+
 .link:focus-visible,
 .logo:focus-visible,
 .accountLink:focus-visible {
