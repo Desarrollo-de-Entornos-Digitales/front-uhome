@@ -16,6 +16,7 @@ export default function PropertiesPage() {
       title="Viviendas cerca de tu"
       accent="campus."
       description="Busca, filtra y compara opciones de vivienda. Guarda en favoritos las que más te gusten para revisarlas después."
+      activeHref="/properties"
     >
       {/* useSearchParams requiere un límite de Suspense en build. */}
       <Suspense fallback={<Spinner message="Cargando propiedades..." />}>
