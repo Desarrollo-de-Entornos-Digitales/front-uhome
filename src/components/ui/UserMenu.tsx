@@ -3,34 +3,29 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { logout, type AuthUser } from "../../services/auth";
-import { clearSession, getUser } from "../../services/session";
+import { logout } from "../../services/auth";
+import { useSessionStore } from "../../store/sessionStore";
 import { Avatar } from "./Avatar";
 
 import styles from "./UserMenu.module.css";
 
 export function UserMenu() {
   const router = useRouter();
-
-  const [user, setUser] = useState<AuthUser | null>(null);
+  const user = useSessionStore((state) => state.user);
+  const hydrate = useSessionStore((state) => state.hydrate);
+  const clear = useSessionStore((state) => state.clear);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setUser(getUser());
-  }, []);
+    hydrate();
+  }, [hydrate]);
 
   async function handleLogout() {
     setLoading(true);
-
-    try {
-      await logout();
-    } catch {
-      // Aunque falle el backend, cerramos la sesión local.
-    } finally {
-      clearSession();
-      router.replace("/login");
-      router.refresh();
-    }
+    await logout().catch(() => undefined);
+    clear();
+    router.replace("/login");
+    router.refresh();
   }
 
   if (!user) {
@@ -39,10 +34,7 @@ export function UserMenu() {
 
   return (
     <div className={styles.menu}>
-      <Avatar
-        name={user.fullName}
-        size="sm"
-      />
+      <Avatar name={user.fullName} size="sm" />
 
       <div className={styles.user}>
         <strong>{user.fullName}</strong>

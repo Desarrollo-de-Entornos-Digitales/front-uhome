@@ -1,30 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { isAuthenticated } from "../../services/session";
+import { useSessionStore } from "../../store/sessionStore";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
-export function ProtectedRoute({
-  children,
-}: ProtectedRouteProps) {
+export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const router = useRouter();
-  const [checking, setChecking] = useState(true);
+  const hydrate = useSessionStore((state) => state.hydrate);
+  const hydrated = useSessionStore((state) => state.hydrated);
+  const token = useSessionStore((state) => state.token);
 
   useEffect(() => {
-    if (!isAuthenticated()) {
+    hydrate();
+  }, [hydrate]);
+
+  useEffect(() => {
+    if (hydrated && !token) {
       router.replace("/login");
-      return;
     }
+  }, [hydrated, token, router]);
 
-    setChecking(false);
-  }, [router]);
-
-  if (checking) {
+  if (!hydrated || !token) {
     return (
       <div
         style={{
